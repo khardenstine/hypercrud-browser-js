@@ -1,0 +1,24 @@
+{
+  "name": "hypercrud-browser-js",
+  "version": "0.1.0-SNAPSHOT",
+  "description": "",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\""
+  },
+  "devDependencies": {
+    "babel-core": "^6.7.7",
+    "babel-loader": "^6.2.4",
+    "css-loader": "^0.23.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "@dustingetz/react-json-editor": "^0.3.0",
+    "lodash": "^4.11.1",
+    "react": "^15.0.1",
+    "react-cursor": "2.0.0-alpha.11",
+    "react-dom": "^15.0.1"
+  }
+}

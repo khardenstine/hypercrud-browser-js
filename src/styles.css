@@ -1,0 +1,29 @@
+fieldset {
+  padding: 10px;
+  border-width: 1px;
+}
+
+.truncate {
+//display: block;
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+}
+
+.half-width {
+  width: 50%;
+  display: inline-block;
+}
