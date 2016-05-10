@@ -22,8 +22,19 @@ module.exports = {
   ],
   module: {
     loaders: [
-      {test: /\.js$/, loaders: ['babel'], include: [path.resolve('./src')]},
-      {test: /\.css$/, loader: 'style!css'}
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+        include: [path.resolve('./src')],
+        query: {
+          presets:['es2015', 'react']
+        }
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css'
+      }
     ]
   }
 };

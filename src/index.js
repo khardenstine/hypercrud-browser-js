@@ -1,5 +1,4 @@
 import HypercrudBrowser from './HypercrudBrowser';
-import HypercrudCient from './HypercrudClient'
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -10,11 +9,11 @@ import ReactDOM from 'react-dom';
  let h = new History();
  events.listen(h, History.EventType.NAVIGATE, (e) => console.log(e));
  h.setEnabled(true);
-*/
-
-//let x = JSON.parse(document.getElementById('initial-state').textContent);
-let app = <HypercrudBrowser //initialState={{}}
-                            hcClient={new HypercrudCient()}
+ */
+let initialState = JSON.parse(document.getElementById('initial-state').textContent);
+let entryURI = document.getElementById('service-root').textContent;
+let app = <HypercrudBrowser initialState={initialState}
+                            entryURI={entryURI}
                             pathname={document.location.pathname}/>;
 
 let idempotentRender = () => ReactDOM.render(app, document.getElementById('root'));

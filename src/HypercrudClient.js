@@ -1,4 +1,7 @@
-//import rp from 'request-promise';
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
+
+
 import React from 'react';
 
 function resolveRootRelativeURI(entryURI, relativeURI) {
@@ -9,8 +12,9 @@ export class Resolve extends React.Component {
   render() {
     let {hcClient, hcNode, cmp} = this.props;
 
-    let buildNewCmp = () => <Resolve hcClient={hcClient} hcNode={hcNode} cmp={cmp}/>;
-    let promise = this.props.hcClient.resolve(hcClient, hcNode, this, buildNewCmp);
+    //let buildNewCmp = () => <Resolve hcClient={hcClient} hcNode={hcNode} cmp={cmp}/>;
+    //let promise = this.props.hcClient.resolve(hcClient, hcNode, this, buildNewCmp);
+    return <div>hi2</div>;
   }
 }
 
@@ -25,7 +29,7 @@ export default class HypercrudClient {
   }
 
   read(relativeURI) {
-    console.assert(!!relativeHref);
+    console.assert(!!relativeURI);
     let start = Date.now();
     var options = {
       uri: resolveRootRelativeURI(this.entryURI, relativeURI),
@@ -34,7 +38,7 @@ export default class HypercrudClient {
       }
     };
 
-    return null;// rp(options).finally(() => console.log("Request took: " + (Date.now() - start) + "ms"));
+    rp(options).finally(() => console.log("Request took: " + (Date.now() - start) + "ms"));
   }
 
   resolve(relativeURI, cmp, buildNewCmp) {
@@ -43,7 +47,7 @@ export default class HypercrudClient {
       return resolved[relativeURI];
     }
     else {
-      this.globalState.refine('cmp-deps').merge(cmp);
+      //this.globalState.refine('cmp-deps').merge(cmp);
       if (relativeURI in pending) {
         return pending[relativeURI]
             .finally(() => {
@@ -57,7 +61,7 @@ export default class HypercrudClient {
               // todo parse transit
               let hcResponseNode = responseBody.hypercrud;
               this.globalState.refine('resolved').swap(m => m.put(relativeURI, hcResponseNode));
-              // todo mrege responseBody.cache into resolved
+              // todo merge responseBody.cache into resolved
               this.globalState.refine('pending').dissoc(relativeURI);
               this.globalState.refine('cmp-deps').dissoc(cmp);
               this.forceUpdate(cmp, buildNewCmp);

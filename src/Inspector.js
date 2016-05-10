@@ -19,7 +19,6 @@ export default class Inspector extends React.Component {
 
     return (
         <div className="hypercrud-browser">
-          <BreadCrumbs/>
           <Resolve />
           {renderedClient}
         </div>
